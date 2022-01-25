@@ -17,4 +17,13 @@ final class Version20220125155400 extends AbstractMigration
         $this->addSql('ALTER TABLE oauth2_access_token CHANGE user_identifier user_identifier VARCHAR(128) DEFAULT NULL;');
         $this->addSql('ALTER TABLE messenger_messages CHANGE delivered_at delivered_at DATETIME DEFAULT NULL;');
     }
+
+    public function down(Schema $schema): void
+    {
+        $this->addSql('DROP TABLE oauth2_authorization_code;');
+        $this->addSql('DROP TABLE oauth2_refresh_token;');
+        $this->addSql('DROP TABLE oauth2_client;');
+        $this->addSql('DROP TABLE oauth2_access_token;');
+        $this->addSql('DROP TABLE messenger_messages;');
+    }
 }
