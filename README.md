@@ -9,7 +9,7 @@
 
 * PHP 8 is required
 * Composer
-* Node & NPM (tested in Node v14.17.0 and NPM 6.14.13)
+* Node & NPM (tested in Node v14.17.0 and NPM 6.14.13 / 8.3.1)
 
 ## Requirements for dev environment
 
