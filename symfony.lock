@@ -166,6 +166,9 @@
     "psr/log": {
         "version": "1.1.4"
     },
+    "rych/phpass": {
+        "version": "v3.0.0beta1"
+    },
     "sensio/framework-extra-bundle": {
         "version": "6.2",
         "recipe": {
