@@ -36,31 +36,4 @@ class HomeController extends AbstractController
         ]);
     }
 
-    /**
-     * @throws Exception
-     */
-    #[Route('/login', name: 'login')]
-    public function loginAction(
-        Request $request,
-        UserRepository $userRepository,
-    ): Response {
-        $passwordValidatorService = new PasswordValidatorService();
-        $userEmail = $request->get("email");
-        $userPlainPassword = $request->get("password");
-
-        $user = $userRepository->findOneBy(['email' => $userEmail]);
-
-        if ($user == null) {
-            throw new Exception("There's no user with that email");
-        }
-
-        $isValid = $passwordValidatorService->isPasswordValid(
-            $user->getPassword(),
-            $userPlainPassword
-        );
-
-        if ($isValid) {
-            //TODO Authenticate user
-        }
-    }
 }
