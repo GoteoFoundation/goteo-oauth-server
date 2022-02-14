@@ -48,3 +48,14 @@ OAUTH2_PUBLIC_KEY_PATH=/absolute/path/public.key
    - Scope: Use "TEST", or any that's in `config/packages/league_oauth2_server.yaml` at the `league_oauth2_server.scopes.available` entry
    - Client Authentication: "Send as Basic Auth header"
 3. Finally, click on "Get New Access Token" which should return an "Authentication complete" message, and then redirect you to a popup with the access token details.
+
+### Test OAuth2 with "password credentials"
+
+A slight modification of the previous setup with Postman, allows us to generate an OAuth2 access token bound to a user (email and password must be provided in the same call).
+
+To do so, at step 2, do the following:
+- Select "Password Credentials" instead of "Client Credentials"
+- Add the username (which is the user's email)
+- Type the user's password
+
+When you click on "Get New Access Token", it'll create your access token. And there will be a new entry in the `oauth2_access_token` DB table with the user's email.

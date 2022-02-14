@@ -10,8 +10,11 @@
 
 namespace App\Controller;
 
+use App\EventListener\AuthorizationRequestResolverSubscriber;
 use LogicException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -37,5 +40,32 @@ class SecurityController extends AbstractController
     public function logout(): void
     {
         throw new LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+
+    /**
+     * @Route("/consent", name="app_consent")
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
+     */
+    public function consent(Request $request): Response
+    {
+        $form = $this->createForm(AuthorizationType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            switch (true) {
+                case $form->get('accept')->isClicked():
+                    $request->getSession()->set(AuthorizationRequestResolverSubscriber::SESSION_AUTHORIZATION_RESULT, true);
+                    break;
+                case $form->get('refuse')->isClicked():
+                    $request->getSession()->set(AuthorizationRequestResolverSubscriber::SESSION_AUTHORIZATION_RESULT, false);
+                    break;
+            }
+
+            return $this->redirectToRoute('oauth2_authorize', $request->query->all());
+        }
+
+        return $this->render('oauth2/authorization.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
