@@ -1,20 +1,22 @@
-# Add database config for Doctrine component:
+# Initial startup
 
-You'll need to edit the `.env.local` / `.env.prod` file by adding this line:
-
+1. Start main Goteo's Docker-compose stack, so it's network is available for OAuth Docker service
+2. Add this line to your `.env.local` / `.env.prod` file:
 ```
 DATABASE_URL=mysql://goteo:goteo@mariadb:3306/goteo?serverVersion=10.2
 ```
+3. Install PHP dependencies: `composer install`
+4. Install JS dependencies: `npm install`
+5. Start Docker service: `docker-compose up`
+6. Deploy assets (run this every time there are JS/CSS changes): `npm run-script build`
+7. Create OAuth2 DB tables: `bin/console doctrine:schema:update --force`. Throws an error, but DB schema is updated anyway by league/oauth2-server-bundle.
 
-# How to install
+# Normal startup (after initial)
 
 1. Install PHP dependencies: `composer install`
 2. Install JS dependencies: `npm install`
-3. Start server:
-   - Run Docker service: `docker-compose up`
-   - Run local server (temporary option using Symfony CLI): `symfony server:start --no-tls`
+3. Start Docker service: `docker-compose up`
 4. Deploy assets (run this every time there are JS/CSS changes): `npm run-script build`
-5. Create OAuth2 DB tables: `bin/console doctrine:schema:update --force`. Throws an error, but DB schema is updated anyway by league/oauth2-server-bundle.
 
 ## Requirements for ALL environments:
 
