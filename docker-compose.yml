@@ -4,7 +4,7 @@
 version: '3.1'
 services:
 
-    oauth-server:
+    oauth-server-nginx:
         image: 'nginx:alpine'
         working_dir: /application
         volumes:
