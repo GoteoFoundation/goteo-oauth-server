@@ -3,7 +3,7 @@
 You'll need to edit the `.env.local` / `.env.prod` file by adding this line:
 
 ```
-DATABASE_URL=mysql://YOU_DB_USER:YOUR_DB_PASSWORD@YOUR_LOCAL_IP:3307/YOUR_DATABASE?serverVersion=10.2
+DATABASE_URL=mysql://goteo:goteo@mariadb:3306/goteo?serverVersion=10.2
 ```
 
 # How to install
