@@ -18,6 +18,10 @@ DATABASE_URL=mysql://goteo:goteo@mariadb:3306/goteo?serverVersion=10.2
 3. Start Docker service: `docker-compose up`
 4. Deploy assets (run this every time there are JS/CSS changes): `npm run-script build`
 
+# Access OAuth service:
+
+Visit in your browser: http://localhost:52000
+
 ## Requirements for ALL environments:
 
 * PHP 8 is required
