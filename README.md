@@ -48,13 +48,15 @@ OAUTH2_PUBLIC_KEY_PATH=/absolute/path/public.key
 
 ## Testing OAuth2 access token generation with Postman:
 
+Run all these commands under the Docker service. E.g.: `docker exec goteo-oauth_php-fpm_1 composer install`
+
 1. Create an OAuth2 client: `bin/console league:oauth2-server:create-client OAUTH2-CLIENT-NAME`. This will generate:
    1. Client ID
    2. Client secret
 2. Open Postman and configure a request with the following authorization options:
    - Token name: Any name
    - Grant type: Use "Client Credentials"
-   - Access Token URL: "http://127.0.0.1:8000/token"
+   - Access Token URL: "http://127.0.0.1:52000/token"
    - Client ID: The one you've just obtained in step 1
    - Client secret: The one you've just obtained in step 1
    - Scope: Use "TEST", or any that's in `config/packages/league_oauth2_server.yaml` at the `league_oauth2_server.scopes.available` entry
