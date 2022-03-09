@@ -46,7 +46,11 @@ OAUTH2_ENCRYPTION_KEY=EXAMPLE-ENCRYPTION-KEY
 OAUTH2_PUBLIC_KEY_PATH=/absolute/path/public.key
 ```
 
-## Testing OAuth2 access token generation with Postman:
+## IMPORTANT! ##
+
+You need to create the OAuth2 client ID / secret pair, binding them to the GRANT TYPE you need (client credentials or password). Otherwise, it won't work.
+
+## Testing OAuth2 "client_credentials" grant (Postman):
 
 Run all these commands under the Docker service. E.g.: `docker exec goteo-oauth_php-fpm_1 composer install`
 
@@ -63,23 +67,25 @@ Run all these commands under the Docker service. E.g.: `docker exec goteo-oauth_
    - Client Authentication: "Send as Basic Auth header"
 3. Finally, click on "Get New Access Token" which should return an "Authentication complete" message, and then redirect you to a popup with the access token details.
 
-### Test OAuth2 with "password credentials"
+### Test OAuth2 "password_credentials" grant (Postman):
 
-A slight modification of the previous setup with Postman, allows us to generate an OAuth2 access token bound to a user (email and password must be provided in the same call).
+This grant type, allows us to generate an OAuth2 access token bound to a user (email and password must be provided in the same call).
 
-To do so:
-
-At step 1, when you "Create an OAuth2 client": `bin/console league:oauth2-server:create-client OAUTH2-PASSWORD --grant-type password`. This will generate:
-   1. Client ID
-   2. Client secret
+Create a new OAuth2 client:
+`bin/console league:oauth2-server:create-client OAUTH2-PASSWORD --grant-type password`
 
 At step 2, do the following:
-- Select "Password Credentials" instead of "Client Credentials"
-- Add the username (which is the user's email)
-- Type the user's password
+- Grant type: "Password Credentials"
+- Username: the user's email
+- Password : Type the user's password
 
-When you click on "Get New Access Token", it'll create your access token. And there will be a new entry in the `oauth2_access_token` DB table with the user's email.
+### Test OAuth2 "authorization_code" grant (Postman):
 
-## IMPORTANT! ##
+Create an OAuth2 client like this:
+`bin/console league:oauth2-server:create-client OAUTH2-AUTHORIZATION_CODE --grant-type authorization_code --redirect-uri http://127.0.0.1:52000/callback --allow-plain-text-pkce`.
 
-You need to create the OAuth2 client ID / secret pair, binding them to the grant type you need (client credentials or password). Otherwise, it won't work.
+At step 2, do the following:
+- Grant type: "Authorization Code"
+- Callback URL: The one in the --redirect-uri parameter from the generated client => `http://127.0.0.1:52000/callback`
+- Auth URL: `http://127.0.0.1:52000/authorize`
+- State: Any string
