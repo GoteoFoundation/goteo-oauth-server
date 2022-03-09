@@ -11,6 +11,7 @@
 namespace App\Controller;
 
 use App\EventListener\AuthorizationRequestResolverSubscriber;
+use App\Form\AuthorizationType;
 use LogicException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -53,15 +54,16 @@ class SecurityController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             switch (true) {
-                case $form->get('accept')->isClicked():
+                case $form->get('accept') == "on":
                     $request->getSession()->set(AuthorizationRequestResolverSubscriber::SESSION_AUTHORIZATION_RESULT, true);
                     break;
-                case $form->get('refuse')->isClicked():
+                case $form->get('refuse') == "on":
                     $request->getSession()->set(AuthorizationRequestResolverSubscriber::SESSION_AUTHORIZATION_RESULT, false);
                     break;
             }
 
-            return $this->redirectToRoute('oauth2_authorize', $request->query->all());
+            return $this->redirect($request->getSchemeAndHttpHost() . "/authorize");
+//            return $this->redirectToRoute('oauth2_authorize', $request->query->all());
         }
 
         return $this->render('oauth2/authorization.html.twig', [
