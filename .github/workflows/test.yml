@@ -23,9 +23,7 @@ jobs:
           fetch-depth: 1
 
       - name: Install NPM packages
-        run: |
-          sudo npm install grunt -g --prefix=/usr/local
-          npm install
+        run: npm install
 
       - name: Setup PHP
         uses: nanasess/setup-php@master
@@ -35,5 +33,5 @@ jobs:
       - name: Run Composer Install
         run: composer install --no-interaction
 
-      - name: Run tests
-        run: ./run-tests.sh -t config/github-settings.yml tests/
+      - name: Run PHPUnit tests
+        run: bin/phpunit
