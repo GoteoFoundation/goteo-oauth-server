@@ -1,13 +1,38 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Unit\Service;
 
+use App\Service\PasswordValidatorService;
 use PHPUnit\Framework\TestCase;
 
-class AppServicePasswordValidatorServiceTest extends TestCase
+class PasswordValidatorServiceTest extends TestCase
 {
-    public function testSomething(): void
+    public function testSHA1HashedPasswordIsValid(): void
     {
-        $this->assertTrue(true);
+        $plainTextPassword = "test-password";
+        $hashedPassword = sha1($plainTextPassword);
+
+        $passwordValidatorService = new PasswordValidatorService();
+        $response = $passwordValidatorService->isPasswordValid(
+            $hashedPassword,
+            $plainTextPassword
+        );
+
+        $this->assertTrue($response);
+    }
+
+    public function testPasswordValidatorFailsWhenHashedPasswordDoesNotMatchPlainTextPassword(): void
+    {
+        $plainTextPassword = "test-password";
+        $realPlainTextPasswordUsed = "test-password2";
+        $hashedPassword = sha1($plainTextPassword);
+
+        $passwordValidatorService = new PasswordValidatorService();
+        $response = $passwordValidatorService->isPasswordValid(
+            $hashedPassword,
+            $realPlainTextPasswordUsed
+        );
+
+        $this->assertFalse($response);
     }
 }
