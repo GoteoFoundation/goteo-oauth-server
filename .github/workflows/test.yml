@@ -1,0 +1,37 @@
+name: "[CI] Test"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  DATABASE_URL: "mysql://goteo:goteo@127.0.0.1:3307/goteo?serverVersion=10.2"
+
+jobs:
+  test-report:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '8.0' ]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Install NPM packages
+        run: npm install
+
+      - name: Setup PHP
+        uses: nanasess/setup-php@master
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Run Composer Install
+        run: composer install --no-interaction
+
+      - name: Run PHPUnit tests
+        run: bin/phpunit
