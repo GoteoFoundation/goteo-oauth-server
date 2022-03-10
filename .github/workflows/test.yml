@@ -6,6 +6,9 @@ on:
       - main
   pull_request:
 
+env:
+  DATABASE_URL: "mysql://goteo:goteo@127.0.0.1:3307/goteo?serverVersion=10.2"
+
 jobs:
   test-report:
     runs-on: ubuntu-20.04
