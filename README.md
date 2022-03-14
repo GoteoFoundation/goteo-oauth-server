@@ -36,6 +36,7 @@ Visit in your browser: http://localhost:52000 (52000 is the port specified in th
    - If you didn't use a passphrase: `openssl rsa -in private.key -pubout -out public.key`
    - If you used a passphrase: `openssl rsa -in private.key -passin pass:_passphrase_ -pubout -out public.key`
 4. Generate encryption key: `php -r 'echo base64_encode(random_bytes(32)), PHP_EOL;'`
+5. Change file permissions of both keys: `docker exec goteo-oauth-server_php-fpm_1 chmod 644 public.key private.key`
 
 After above steps (generation of private key, public key & encryption key), edit the environment file (`.env.local` or `.env.prod`):
 
