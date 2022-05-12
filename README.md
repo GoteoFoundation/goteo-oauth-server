@@ -5,6 +5,9 @@
 ```
 DATABASE_URL=mysql://goteo:goteo@mariadb:3306/goteo?serverVersion=10.2
 ```
+
+We have provided a ```install.sh``` script that installs in your local machine the necessary PHP versions and plugins you might be missing, as well as executes composer and npm.
+
 3. Install PHP dependencies: `composer install`
 4. Install JS dependencies: `npm install`
 5. Start Docker service: `docker-compose up`
@@ -29,6 +32,10 @@ Visit in your browser: http://localhost:52000 (52000 is the port specified in th
 * Node & NPM (tested in Node v14.17.0 and NPM 6.14.13 / 8.3.1)
 
 ## Steps to create a pair of private/public keys and an encryption password:
+
+This steps are meant to be executed inside the docker container.
+
+You can access using ```docker-compose exec php-fpm /bin/bash```
 
 1. Generate private key: `openssl genrsa -out private.key 2048`
 2. Add passphrase to private key (optional): `openssl genrsa -aes128 -passout pass:_passphrase_ -out private.key 2048`
@@ -59,6 +66,7 @@ Run all these commands under the Docker service. E.g.: `docker exec goteo-oauth_
    1. Client ID
    2. Client secret
 2. Open Postman and configure a request with the following authorization options:
+   - Type: OAuth 2.0
    - Token name: Any name
    - Grant type: Use "Client Credentials"
    - Access Token URL: "http://127.0.0.1:52000/token"
