@@ -5,18 +5,12 @@
 ```
 DATABASE_URL=mysql://goteo:goteo@mariadb:3306/goteo?serverVersion=10.2
 ```
-3. Install PHP dependencies: `composer install`
-4. Install JS dependencies: `npm install`
-5. Start Docker service: `docker-compose up`
-6. Deploy assets (run this every time there are JS/CSS changes): `npm run-script build`
-7. Create OAuth2 DB tables: `bin/console doctrine:schema:update --force`. Throws an error, but DB schema is updated anyway by league/oauth2-server-bundle.
+3. Start Docker services: `docker-compose up`
+4. Create OAuth2 DB tables: `bin/console doctrine:schema:update --force`. Throws an error, but DB schema is updated anyway by league/oauth2-server-bundle.
 
 # Normal startup (after initial)
 
-1. Install PHP dependencies: `composer install`
-2. Install JS dependencies: `npm install`
-3. Start Docker service: `docker-compose up`
-4. Deploy assets (run this every time there are JS/CSS changes): `npm run-script build`
+1. Start Docker services: `docker-compose up`
 
 # Access OAuth service:
 
