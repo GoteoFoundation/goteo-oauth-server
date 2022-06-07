@@ -45,7 +45,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(name: 'modified', type: 'datetime')]
     private DateTime $modifiedAt;
 
-    public function getId(): ?int
+    #[ORM\Column(name: 'avatar', type: 'string')]
+    private string $picture;
+
+    #[ORM\Column(name: 'lang', type: 'string')]
+    private string $locale;
+
+    #[ORM\Column(name: 'confirmed', type: 'boolean')]
+    private bool $isConfirmed;
+
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -178,4 +187,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function isConfirmed(): bool
+    {
+        return $this->isConfirmed;
+    }
+
+    public function setIsConfirmed(bool $isConfirmed): self
+    {
+        $this->isConfirmed = $isConfirmed;
+
+        return $this;
+    }
+
+    public function getLocale(): string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(string $locale): self
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    public function getPicture(): string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
 }
