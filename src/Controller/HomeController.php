@@ -10,6 +10,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ApiTokenRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,4 +25,33 @@ class HomeController extends AbstractController
         ]);
     }
 
+    #[Route('/userInfo', name: 'userInfo')]
+    public function userInfo(): Response
+    {
+        return $this->json([
+            "sub" => $this->getUser()->getId(),
+            "name" => $this->getUser()->getName(),
+            "username" => $this->getUser()->getId(),
+            "picture" => $this->getUser()->getPicture()
+                ? $this->getParameter("BASE_AVATAR_URL") . $this->getUser()->getPicture()
+                : null,
+            "email" => $this->getUser()->getUserIdentifier(),
+            "email_verified" => $this->getUser()->isConfirmed(),
+            "locale" => $this->getUser()->getLocale(),
+        ]);
+    }
+
+    #[Route('/userApiToken', name: 'userApiToken')]
+    public function userApiToken(ApiTokenRepository $apiTokenRepository): Response
+    {
+        $apiToken = $apiTokenRepository->findOneBy([
+            "userId" => $this->getUser()->getId()
+        ]);
+
+        return $this->json([
+            "id" => $apiToken->getUserId(),
+            "api_token" => $apiToken->getApiToken(),
+            "expires_at" => $apiToken->getExpiresAt(),
+        ]);
+    }
 }
