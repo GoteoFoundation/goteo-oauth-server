@@ -10,7 +10,8 @@
 
 namespace App\Controller;
 
-use App\Repository\ApiTokenRepository;
+use App\UseCase\GetUserApiTokenUseCase;
+use App\UseCase\GetUserInfoUseCase;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,32 +27,21 @@ class HomeController extends AbstractController
     }
 
     #[Route('/userInfo', name: 'userInfo')]
-    public function userInfo(): Response
+    public function userInfo(GetUserInfoUseCase $useCase): Response
     {
-        return $this->json([
-            "sub" => $this->getUser()->getId(),
-            "name" => $this->getUser()->getName(),
-            "username" => $this->getUser()->getId(),
-            "picture" => $this->getUser()->getPicture()
-                ? $this->getParameter("BASE_AVATAR_URL") . $this->getUser()->getPicture()
-                : null,
-            "email" => $this->getUser()->getUserIdentifier(),
-            "email_verified" => $this->getUser()->isConfirmed(),
-            "locale" => $this->getUser()->getLocale(),
-        ]);
+        $response = $useCase->execute(
+            $this->getUser()->getUserIdentifier(),
+            $this->getParameter("BASE_AVATAR_URL")
+        );
+
+        return $this->json($response);
     }
 
     #[Route('/userApiToken', name: 'userApiToken')]
-    public function userApiToken(ApiTokenRepository $apiTokenRepository): Response
+    public function userApiToken(GetUserApiTokenUseCase $useCase): Response
     {
-        $apiToken = $apiTokenRepository->findOneBy([
-            "userId" => $this->getUser()->getId()
-        ]);
+        $response = $useCase->execute($this->getUser()->getUserIdentifier());
 
-        return $this->json([
-            "id" => $apiToken->getUserId(),
-            "api_token" => $apiToken->getApiToken(),
-            "expires_at" => $apiToken->getExpiresAt(),
-        ]);
+        return $this->json($response);
     }
 }
