@@ -19,6 +19,7 @@ use PHPUnit\Framework\TestCase;
 class GetUserInfoUseCaseTest extends TestCase
 {
     private const BASE_AVATAR_URL = "http://BASE_AVATAR_URL/";
+    private const DUMMY_USER_ID = "user_id";
 
     public function testGivenUserWithPictureWhenTransformerIsExecutedThenArrayIsReturned(): void
     {
@@ -28,7 +29,7 @@ class GetUserInfoUseCaseTest extends TestCase
             $this->getUserToArrayTransformerMock(),
         );
 
-        $response = $useCase->execute("user_id", self::BASE_AVATAR_URL);
+        $response = $useCase->execute(self::DUMMY_USER_ID, self::BASE_AVATAR_URL);
 
         $this->assertIsArray($response);
     }
@@ -37,7 +38,7 @@ class GetUserInfoUseCaseTest extends TestCase
     {
         $user = new User();
         $user
-            ->setId("user_id")
+            ->setId(self::DUMMY_USER_ID)
             ->setName("user_name")
             ->setPicture(null)
             ->setEmail("user@email.com")
