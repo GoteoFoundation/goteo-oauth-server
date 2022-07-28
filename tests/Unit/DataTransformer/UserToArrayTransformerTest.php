@@ -25,6 +25,7 @@ class UserToArrayTransformerTest extends TestCase
     {
         $user = $this->getUser("user_picture.jpg");
         $transformer = new UserToArrayTransformer();
+
         $response = $transformer->transform($user, self::BASE_AVATAR_URL);
 
         $this->assertEquals(
@@ -60,6 +61,7 @@ class UserToArrayTransformerTest extends TestCase
     {
         $user = $this->getUser(null);
         $transformer = new UserToArrayTransformer();
+
         $response = $transformer->transform($user, self::BASE_AVATAR_URL);
 
         $this->assertEquals(

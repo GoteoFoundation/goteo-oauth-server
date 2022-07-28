@@ -24,6 +24,7 @@ class ApiTokenToArrayTransformerTest extends TestCase
     {
         $apiToken = $this->getApiToken();
         $transformer = new ApiTokenToArrayTransformer();
+
         $response = $transformer->transform($apiToken);
 
         $this->assertEquals(
