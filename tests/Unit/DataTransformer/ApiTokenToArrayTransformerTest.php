@@ -20,7 +20,7 @@ class ApiTokenToArrayTransformerTest extends TestCase
     private const DUMMY_USER_ID = "user_id";
     private const DUMMY_API_TOKEN = "user_api_token";
 
-    public function testSHA1HashedPasswordIsValid(): void
+    public function testGivenAnApiTokenWhenTransformerIsExecutedThenArrayIsReturned(): void
     {
         $apiToken = $this->getApiToken();
         $transformer = new ApiTokenToArrayTransformer();
