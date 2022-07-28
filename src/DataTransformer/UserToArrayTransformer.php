@@ -25,7 +25,7 @@ class UserToArrayTransformer
             "picture" => $user->getPicture()
                 ? $baseAvatarUrl . $user->getPicture()
                 : null,
-            "email" => $user->getUserIdentifier(),
+            "email" => $user->getEmail(),
             "email_verified" => $user->isConfirmed(),
             "locale" => $user->getLocale(),
         ];

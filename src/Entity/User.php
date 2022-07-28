@@ -45,8 +45,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(name: 'modified', type: 'datetime')]
     private DateTime $modifiedAt;
 
-    #[ORM\Column(name: 'avatar', type: 'string')]
-    private string $picture;
+    #[ORM\Column(name: 'avatar', type: 'string', nullable: true)]
+    private ?string $picture;
 
     #[ORM\Column(name: 'lang', type: 'string')]
     private string $locale;
@@ -57,6 +57,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getId(): ?string
     {
         return $this->id;
+    }
+
+    public function setId(string $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getEmail(): string
@@ -211,12 +218,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPicture(): string
+    public function getPicture(): ?string
     {
         return $this->picture;
     }
 
-    public function setPicture(string $picture): self
+    public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
 
