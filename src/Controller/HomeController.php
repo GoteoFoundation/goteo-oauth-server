@@ -10,6 +10,8 @@
 
 namespace App\Controller;
 
+use App\UseCase\GetUserApiTokenUseCase;
+use App\UseCase\GetUserInfoUseCase;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,4 +26,22 @@ class HomeController extends AbstractController
         ]);
     }
 
+    #[Route('/userInfo', name: 'userInfo')]
+    public function userInfo(GetUserInfoUseCase $useCase): Response
+    {
+        $response = $useCase->execute(
+            $this->getUser()->getUserIdentifier(),
+            $this->getParameter("BASE_AVATAR_URL")
+        );
+
+        return $this->json($response);
+    }
+
+    #[Route('/userApiToken', name: 'userApiToken')]
+    public function userApiToken(GetUserApiTokenUseCase $useCase): Response
+    {
+        $response = $useCase->execute($this->getUser()->getUserIdentifier());
+
+        return $this->json($response);
+    }
 }
