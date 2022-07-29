@@ -28,19 +28,24 @@ These steps are meant to be executed inside the docker container.
 
 You can access using ```docker-compose exec php-fpm /bin/bash```
 
-1. Generate private key: `openssl genrsa -out private.key 2048`
-2. Add passphrase to private key (optional): `openssl genrsa -aes128 -passout pass:_passphrase_ -out private.key 2048`
-3. Generate public key:
-   - If you didn't use a passphrase: `openssl rsa -in private.key -pubout -out public.key`
-   - If you used a passphrase: `openssl rsa -in private.key -passin pass:_passphrase_ -pubout -out public.key`
-4. Generate encryption key: `php -r 'echo base64_encode(random_bytes(32)), PHP_EOL;'`
-5. Change file permissions of both keys: `chmod 644 public.key private.key`
+[⚠ **WARNING**: Probably not working with passphrase ⚠]
+
+1. **Generate private key**: `openssl genrsa -out private.key 2048`
+
+2. [*Optional*] Add passphrase to private key: `openssl genrsa -aes128 -passout pass:_passphrase_ -out private.key 2048`
+
+3. **Generate public key**:
+   - **If you didn't use a passphrase**: `openssl rsa -in private.key -pubout -out public.key`
+   - [*Optional*] If you used a passphrase: `openssl rsa -in private.key -passin pass:_passphrase_ -pubout -out public.key`
+4. **Generate encryption key**: `php -r 'echo base64_encode(random_bytes(32)), PHP_EOL;'`
+
+5. **Change file permissions of both keys**: `docker-compose run php-fpm chmod 644 public.key private.key`
 
 After above steps (generation of keys), edit the environment file (`.env.local` or `.env.prod`):
 
 ```
 OAUTH2_PRIVATE_KEY_PATH=/absolute/path/private.key
-OAUTH2_PRIVATE_KEY_PASSPHRASE=      # OPTIONAL
+OAUTH2_PRIVATE_KEY_PASSPHRASE=      # OPTIONAL, only if you used passphrase
 OAUTH2_ENCRYPTION_KEY=EXAMPLE-ENCRYPTION-KEY
 OAUTH2_PUBLIC_KEY_PATH=/absolute/path/public.key
 ```
