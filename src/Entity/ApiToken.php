@@ -17,7 +17,7 @@ class ApiToken
     #[ORM\Column(name: 'key', type: 'string', length: 50)]
     private $apiToken;
 
-    #[ORM\Column(name: 'expiration_date', type: 'datetime_immutable', nullable: true)]
+    #[ORM\Column(name: 'expiration_date', type: 'datetime', nullable: true)]
     private $expiresAt;
 
     public function getUserId(): ?string
