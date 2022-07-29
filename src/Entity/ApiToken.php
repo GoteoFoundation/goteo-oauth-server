@@ -12,15 +12,15 @@ class ApiToken
 {
     #[ORM\Id]
     #[ORM\Column(type: 'string', length: 50)]
-    private $userId;
+    private string $userId;
 
     #[ORM\Column(name: 'key', type: 'string', length: 50)]
-    private $apiToken;
+    private string $apiToken;
 
     #[ORM\Column(name: 'expiration_date', type: 'datetime', nullable: true)]
-    private $expiresAt;
+    private ?DateTimeImmutable $expiresAt;
 
-    public function getUserId(): ?string
+    public function getUserId(): string
     {
         return $this->userId;
     }
@@ -32,7 +32,7 @@ class ApiToken
         return $this;
     }
 
-    public function getApiToken(): ?string
+    public function getApiToken(): string
     {
         return $this->apiToken;
     }
