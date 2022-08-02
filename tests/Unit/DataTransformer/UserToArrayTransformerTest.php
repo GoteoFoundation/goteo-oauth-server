@@ -10,11 +10,8 @@
 
 namespace App\Tests\Unit\DataTransformer;
 
-use App\DataTransformer\ApiTokenToArrayTransformer;
 use App\DataTransformer\UserToArrayTransformer;
-use App\Entity\ApiToken;
 use App\Entity\User;
-use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
 class UserToArrayTransformerTest extends TestCase
