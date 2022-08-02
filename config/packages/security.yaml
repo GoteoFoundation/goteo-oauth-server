@@ -12,11 +12,17 @@ security:
         app_user_provider:
             entity:
                 class: App\Entity\User
-                property: email
+                property: id
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        api:
+            pattern: ^/(userInfo|userApiToken)
+            security: true
+            stateless: true
+            oauth2: true
+            provider: app_user_provider
         main:
             lazy: true
             provider: app_user_provider
@@ -37,6 +43,7 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/token, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/authorize, roles: IS_AUTHENTICATED_REMEMBERED }
 
 when@test:
