@@ -1,12 +1,15 @@
 # Initial startup
 
 1. Start main Goteo's Docker-compose stack, so it's network is available for OAuth Docker service
-2. Add this line to your `.env.local` / `.env.prod` file:
+2. Add these lines to your `.env.local` / `.env.prod` file (one connection to the OAuth DB, and another to Goteo DB):
 ```
-DATABASE_URL=mysql://goteo:goteo@mariadb:3306/goteo?serverVersion=10.2
+GOTEO_DATABASE_URL=mysql://goteo:goteo@mariadb:3306/goteo?serverVersion=mariadb-10.2.43
+OAUTH_DATABASE_URL=mysql://goteo:goteo@mariadb_oauth:3306/goteo_oauth?serverVersion=mariadb-10.2.43
 ```
 3. Start Docker services: `docker-compose up`
-4. Create OAuth2 DB tables: `bin/console doctrine:schema:update --force`. Throws an error, but DB schema is updated anyway by league/oauth2-server-bundle.
+4. Create OAuth2 DB tables:
+   - LOCAL ENVIRONMENT: tables will be created automatically while booting up
+   - TEST / PROD ENVIRONMENTS: run `bin/console doctrine:migrations:migrate --em=default`
 
 # Normal startup (after initial)
 
