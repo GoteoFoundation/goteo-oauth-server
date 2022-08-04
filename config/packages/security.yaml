@@ -13,6 +13,7 @@ security:
             entity:
                 class: App\Entity\User
                 property: id
+                manager_name: goteo
 
         app_user_provider_by_email:
             entity:
