@@ -7,8 +7,8 @@ on:
   pull_request:
 
 env:
-  GOTEO_DATABASE_URL: "mysql://goteo:goteo@mariadb:3307/goteo?serverVersion=10.2"
-  OAUTH_DATABASE_URL: "mysql://goteo:goteo@mariadb_oauth:3307/goteo_oauth?serverVersion=10.2"
+  GOTEO_DATABASE_URL: "mysql://goteo:goteo@mariadb:3306/goteo?serverVersion=10.2"
+  OAUTH_DATABASE_URL: "mysql://goteo:goteo@mariadb_oauth:3306/goteo_oauth?serverVersion=10.2"
 
 jobs:
   test-report:
