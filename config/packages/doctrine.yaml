@@ -1,19 +1,24 @@
 doctrine:
     dbal:
-        url: '%env(resolve:DATABASE_URL)%'
-        mapping_types:
-            enum: string
+        default_connection: default
+        connections:
+            default:
+                url: '%env(resolve:OAUTH_DATABASE_URL)%'
+            goteo:
+                url: '%env(resolve:GOTEO_DATABASE_URL)%'
 
-        # IMPORTANT: You MUST configure your server version,
-        # either here or in the DATABASE_URL env var (see .env file)
-        #server_version: '13'
     orm:
-        auto_generate_proxy_classes: true
-        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
-        auto_mapping: true
-        mappings:
-            App:
-                is_bundle: false
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
+        default_entity_manager: default
+        entity_managers:
+            default:
+                connection: default
+            goteo:
+                naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+                connection: goteo
+                mappings:
+                    Goteo:
+                        is_bundle: false
+                        type: attribute
+                        dir: '%kernel.project_dir%/src/Entity'
+                        prefix: 'App\Entity'
+                        alias: Goteo
