@@ -12,7 +12,7 @@ jobs:
             - name: Branch info
               run: echo "Deploying branch main"
 
-            - uses: convictional/trigger-workflow-and-wait@v1.3.0
+            - uses: convictional/trigger-workflow-and-wait@v1.6.3
               with:
                   owner: GoteoFoundation
                   repo: goteo-oauth-deploy
