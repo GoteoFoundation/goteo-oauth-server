@@ -1,21 +1,22 @@
 name: "Deployer"
+
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 jobs:
-    deployer:
-        runs-on: ubuntu-latest
+  deployer:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Branch info
-              run: echo "Deploying branch main"
+    steps:
+      - name: Branch info
+        run: echo "Deploying branch main"
 
-            - uses: convictional/trigger-workflow-and-wait@v1.6.3
-              with:
-                  owner: GoteoFoundation
-                  repo: goteo-oauth-deploy
-                  github_token: ${{ secrets.GOTEO_OAUTH_DEPLOY_TOKEN }}
-                  workflow_file_name: build.yml
-                  inputs: '{"branch": "main"}'
+      - uses: convictional/trigger-workflow-and-wait@v1.3.0
+        with:
+          owner: GoteoFoundation
+          repo: goteo-oauth-deploy
+          github_token: ${{ secrets.GOTEO_OAUTH_DEPLOY_TOKEN }}
+          workflow_file_name: build.yml
+          inputs: '{"branch": "main"}'
