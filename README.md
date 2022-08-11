@@ -13,7 +13,7 @@ OAUTH_DATABASE_URL=mysql://goteo:goteo@mariadb_oauth:3306/goteo_oauth?serverVers
 
 # Normal startup (after initial)
 
-1. Start Docker services: `docker-compose up`
+Start Docker services: `docker-compose up`
 
 # Access OAuth service:
 
