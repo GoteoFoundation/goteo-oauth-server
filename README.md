@@ -75,7 +75,7 @@ Run all these commands under the Docker service. E.g.: `docker exec goteo-oauth_
    - Client Authentication: "Send as Basic Auth header"
 4. Finally, click on "Get New Access Token" which should return an "Authentication complete" message, and then redirect you to a popup with the access token details.
 
-### Test OAuth2 "password_credentials" grant (Postman):
+## Test OAuth2 "password_credentials" grant (Postman):
 
 This grant type, allows us to generate an OAuth2 access token bound to a user (email and password must be provided in the same call).
 
@@ -87,7 +87,7 @@ At step 2, do the following:
 - Username: the user's email
 - Password : Type the user's password
 
-### Test OAuth2 "authorization_code" grant (Postman):
+## Test OAuth2 "authorization_code" grant (Postman):
 
 Create an OAuth2 client like this:
 `bin/console league:oauth2-server:create-client OAUTH2-AUTHORIZATION_CODE --grant-type authorization_code --redirect-uri http://127.0.0.1:52000/callback --allow-plain-text-pkce`.
