@@ -7,13 +7,10 @@ GOTEO_DATABASE_URL=mysql://goteo:goteo@mariadb:3306/goteo?serverVersion=mariadb-
 OAUTH_DATABASE_URL=mysql://goteo:goteo@mariadb_oauth:3306/goteo_oauth?serverVersion=mariadb-10.2.43
 ```
 3. Start Docker services: `docker-compose up`
-4. Create OAuth2 DB tables:
-   - LOCAL ENVIRONMENT: tables will be created automatically while booting up
-   - TEST / PROD ENVIRONMENTS: run `bin/console doctrine:migrations:migrate --em=default`
 
-# Normal startup (after initial)
+# Following startups
 
-Start Docker services: `docker-compose up`
+Run: `docker-compose up`
 
 # Access OAuth service:
 
