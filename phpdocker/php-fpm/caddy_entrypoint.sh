@@ -3,7 +3,7 @@
 cd /application
 
 echo -e "\nInstall Composer dependencies"
-composer install
+composer install --no-dev --optimize-autoloader
 
 echo -e "\nInstall NPM dependencies"
 npm install
