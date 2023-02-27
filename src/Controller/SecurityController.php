@@ -53,17 +53,19 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
             switch (true) {
-                case $form->get('accept') == "on":
+                case $data["accept"]:
                     $request->getSession()->set(AuthorizationRequestResolverSubscriber::SESSION_AUTHORIZATION_RESULT, true);
                     break;
-                case $form->get('refuse') == "on":
+                case $data["refuse"]:
                     $request->getSession()->set(AuthorizationRequestResolverSubscriber::SESSION_AUTHORIZATION_RESULT, false);
                     break;
             }
 
-            return $this->redirect($request->getSchemeAndHttpHost() . "/authorize");
-//            return $this->redirectToRoute('oauth2_authorize', $request->query->all());
+//            return $this->redirect($request->getSchemeAndHttpHost() . "/authorize");
+            return $this->redirectToRoute('oauth2_authorize', $request->query->all());
         }
 
         return $this->render('oauth2/authorization.html.twig', [
