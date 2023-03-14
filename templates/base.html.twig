@@ -13,7 +13,48 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
+    <body class="d-flex flex-column">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="https://goteo.org"><img width="150" src="{{ asset("images/goteo-white.svg") }}" alt="Goteo"></a>
+                </div>
+            </div>
+        </nav>
+
         {% block body %}{% endblock %}
+
+        <footer class="text-white position-absolute bottom-0 w-100 pt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a class="link-light" href="https://www.goteo.org/blog">Sobre Goteo</a></li>
+                            <li class="list-inline-item"><a class="link-light" href="https://stats.goteo.org" target="_blank">Stats</a></li>
+                            <li class="list-inline-item"><a class="link-light" href="https://www.goteo.org/legal/terms">Condiciones de uso</a></li>
+                            <li class="list-inline-item"><a class="link-light" href="https://www.goteo.org/legal/privacy">Política de privacidad</a></li>
+                            <li class="list-inline-item"><a class="link-light" data-jslicense="1" href="https://www.goteo.org/about/librejs">Licenses</a></li>
+                            <li class="list-inline-item"><a class="link-light" href="https://www.goteo.org/faq">FAQ</a></li>
+                            <li class="list-inline-item"><a class="link-light" href="https://www.goteo.org/contact">Contacto</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-4 hidden-xs">
+                            <p>
+                                <a class="link-light" href="https://platoniq.net">Una iniciativa de <img width=100 src="{{ asset('images/platoniq-white.png') }}" alt="Fundación Platoniq"></a>
+                            </p>
+                    </div>
+
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item"><a class="fa fa-lg fa-facebook" target="_blank" href="" title=""></a></li>
+                        <li class="list-inline-item"><a class="fa fa-lg fa fa-instagram" target="_blank" href="" title=""></a></li>
+                        <li class="list-inline-item"><a class="fa fa-lg fa fa-telegram" target="_blank" href="" title=""></a></li>
+                        <li class="list-inline-item"><a class="fa fa-lg fa fa-github" target="_blank" href="" title=""></a></li>
+                        <li class="list-inline-item"><a class="fa fa-lg fa fa-newspaper-o" target="_blank" href="" title=""></a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </footer>
     </body>
 </html>
