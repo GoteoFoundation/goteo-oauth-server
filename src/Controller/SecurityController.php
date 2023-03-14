@@ -23,7 +23,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/login", name="app_login")
+     * @Route("{_locale}/login", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -44,7 +44,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/consent", name="app_consent")
+     * @Route("{_locale}/consent", name="app_consent")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function consent(Request $request): Response
