@@ -1,0 +1,42 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome";
+
+$color-cyan: #2BBBB7;
+
+$background-dark-green: #14AE84;
+$background-green: #25A083;
+$background-grey: #555555;
+$background-light-green: #19B4B2;
+
+body {
+  background-color: #e8ecec;
+
+  nav {
+    background-color: $background-light-green;
+  }
+
+  button.btn-cyan {
+    background-color: $color-cyan;
+  }
+
+  footer {
+    background-color: $background-grey;
+
+    ul {
+      li {
+        .fa {
+          width: 35px;
+          line-height: 35px;
+          border-radius: 35px;
+          background-color: white;
+          color: $background-grey;
+
+          &:hover {
+            background-color: $background-light-green;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
