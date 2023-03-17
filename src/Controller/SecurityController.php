@@ -12,6 +12,7 @@ namespace App\Controller;
 
 use App\EventListener\AuthorizationRequestResolverSubscriber;
 use App\Form\AuthorizationType;
+use League\Bundle\OAuth2ServerBundle\Repository\ClientRepository;
 use LogicException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,6 +23,15 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+
+    private ClientRepository $clientRepository;
+
+    public function __construct(
+        ClientRepository $clientRepository
+    ) {
+      $this->clientRepository = $clientRepository;
+    }
+
     /**
      * @Route("{_locale}/login", name="app_login")
      */
@@ -49,6 +59,9 @@ class SecurityController extends AbstractController
      */
     public function consent(Request $request): Response
     {
+        $clientId = $request->query->getAlnum('client_id');
+        $client = $clientId ? $this->clientRepository->getClientEntity($clientId): null;
+
         $form = $this->createForm(AuthorizationType::class);
         $form->handleRequest($request);
 
@@ -70,6 +83,7 @@ class SecurityController extends AbstractController
 
         return $this->render('oauth2/authorization.html.twig', [
             'form' => $form->createView(),
+            'client' => $client
         ]);
     }
 }

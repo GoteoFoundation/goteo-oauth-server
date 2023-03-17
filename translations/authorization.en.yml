@@ -2,3 +2,4 @@
 "Accept": "Accept"
 "Refuse": "Refuse"
 "Submit": "Submit"
+authorization.terms_and_conditions: "To continue, Goteo will share your name, email address, language preference and profile picture with %client_name%. Before using this app, you can review the <a href='%terms_and_conditions_url%'>terms and conditions</a> og the %client_name% application."
