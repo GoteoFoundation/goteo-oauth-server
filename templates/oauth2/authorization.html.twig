@@ -11,6 +11,12 @@
                         {{ form_start(form) }}
                         <h1 class="h3 mb-3 font-weight-normal">{{ "Please, authorize or refuse" | trans({}, "authorization" ) }}</h1>
 
+                        {% if client %}
+                            <p>
+                                {{ "authorization.terms_and_conditions" | trans({'%terms_and_conditions_url%': 'https://participa.goteo.org/pages/terms-and-conditions', '%client_name%': client.getName() }, "authorization") | raw }}
+                            </p>
+                        {% endif %}
+
                         <div class="form-check">
                             {{ form_label(form.accept) }}
                             {{ form_widget(form.accept, {'attr': {'class': 'form-check-input'}}) }}
