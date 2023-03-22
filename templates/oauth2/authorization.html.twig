@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-body m-2">
                         {{ form_start(form) }}
-                        <h1 class="h3 mb-3 font-weight-normal">{{ "Please, authorize or refuse" | trans({}, "authorization" ) }}</h1>
+                            <h1 class="h3 mb-3 font-weight-normal">{{ "Please, authorize or refuse" | trans({}, "authorization" ) }}</h1>
 
                         {% if client %}
                             <p>
@@ -17,17 +17,9 @@
                             </p>
                         {% endif %}
 
-                        <div class="form-check">
-                            {{ form_label(form.accept) }}
-                            {{ form_widget(form.accept, {'attr': {'class': 'form-check-input'}}) }}
-                        </div>
+                            {{ form_row(form.accept_or_refuse, {'attr': { 'class': 'form-check'}}) }}
 
-                        <div class="form-check">
-                            {{ form_label(form.refuse) }}
-                            {{ form_widget(form.refuse, {'attr': {'class': 'form-check-input'}}) }}
-                        </div>
-
-                        {{ form_widget(form.submit, {'attr': {'class': 'form-control btn-primary btn btn-lg btn-cyan mt-3'}}) }}
+                            {{ form_widget(form.submit, {'attr': {'class': 'form-control btn-primary btn btn-lg btn-cyan mt-5'}}) }}
                         {{ form_end(form) }}
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\Translator;
@@ -22,16 +22,25 @@ class AuthorizationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('accept', CheckboxType::class, [
-                'label' => $this->translator->trans("Accept", domain: "authorization"),
-                'required' => false,
-            ])
-            ->add('refuse', CheckboxType::class, [
-                'label' => $this->translator->trans("Refuse", domain: "authorization"),
-                'required' => false,
+            ->add('accept_or_refuse', ChoiceType::class, [
+                'label' => $this->translator->trans("Accept or Refuse", domain: "authorization"),
+                'choices' => $this->acceptOrRefuseChoices(),
+                'attr' => [
+                    'class' => 'form-check'
+                ],
+                'expanded' => true,
+                'required' => true,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => $this->translator->trans("Submit", domain: "authorization")
             ]);
+    }
+
+    private function acceptOrRefuseChoices(): array
+    {
+        return [
+            $this->translator->trans('Accept', domain: "authorization") => 'accept',
+            $this->translator->trans('Refuse', domain: "authorization") => 'refuse'
+        ];
     }
 }
