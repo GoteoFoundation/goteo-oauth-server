@@ -3,3 +3,4 @@
 "Refuse": "Rebutjar"
 "Submit": "Guardar"
 authorization.terms_and_conditions: "Per continuar, Goteo compartirà el teu nom, la teva adreça electrònica, la teva preferència d'idioma i la teva foto de perfil amb %client_name%. Abans d'utilitzar aquesta aplicació, pots consultar els <a href='%terms_and_conditions_url%'>termes i condicions d'us</a> de l'aplicación %client_name%."
+"Accept or Refuse": "Accepta o rebutja"

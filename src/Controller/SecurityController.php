@@ -12,6 +12,7 @@ namespace App\Controller;
 
 use App\EventListener\AuthorizationRequestResolverSubscriber;
 use App\Form\AuthorizationType;
+use App\Repository\UserRepository;
 use League\Bundle\OAuth2ServerBundle\Repository\ClientRepository;
 use LogicException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -25,6 +26,7 @@ class SecurityController extends AbstractController
 {
 
     private ClientRepository $clientRepository;
+    private UserRepository $userRepository;
 
     public function __construct(
         ClientRepository $clientRepository
@@ -68,16 +70,15 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            switch (true) {
-                case $data["accept"]:
+            switch ($data['accept_or_refuse']) {
+                case 'accept':
                     $request->getSession()->set(AuthorizationRequestResolverSubscriber::SESSION_AUTHORIZATION_RESULT, true);
                     break;
-                case $data["refuse"]:
+                case 'refuse':
                     $request->getSession()->set(AuthorizationRequestResolverSubscriber::SESSION_AUTHORIZATION_RESULT, false);
                     break;
             }
 
-//            return $this->redirect($request->getSchemeAndHttpHost() . "/authorize");
             return $this->redirectToRoute('oauth2_authorize', $request->query->all());
         }
 
