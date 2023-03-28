@@ -1,0 +1,5 @@
+home.title: "Welcome to the authentication server of the Goteo Platform!"
+home.description: "This server allows you to log in using the Goteo Platform application. To use it, just send us an email informing us of your application and we will contact you to manage the use of Goteo's Oauth"
+home.mail.subject: "Access to Goteo.org's Oauth server"
+home.mail.body: "I would like to be able to use Goteo's Oauth inside my application."
+home.mail.description: "Get access to the Oauth server"
