@@ -1,7 +1,9 @@
-"Email": Email
-"Email or user name": "Correo electrónico o nombre de usuario"
-"Password": "Contraseña"
-"Sign in": "Inicia sessión"
-"Log in!": "Iniciar sessión"
-"You are logged in as %s,": "Has iniciado sessión como %s,"
-"Logout": "Cerrar sessió"
+login:
+  email: Email
+  email_or_username: "Correo electrónico o nombre de usuario"
+  password: "Contraseña"
+  sign_in: "Inicia sessión"
+  log_in: "Iniciar sessión"
+  logged_in_as: "Has iniciado sessión como %s,"
+  logout: "Cerrar sessió"
+  please_sign_in: "Por favor, inicia sessión"

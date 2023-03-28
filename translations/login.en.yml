@@ -1,7 +1,9 @@
-"Email": Email
-"Email or user name": "Email or user name"
-"Password": "Password"
-"Sign in": "Sign in"
-"Log in!": "Log in!"
-"You are logged in as %s,": "You are logged in as %s,"
-"Logout": "Logout"
+login:
+  email: Email
+  email_or_username: "Email or user name"
+  password: "Password"
+  sign_in: "Sign in"
+  log_in: "Log in!"
+  logged_in_as: "You are logged in as %s,"
+  logout: "Logout"
+  please_sign_in: "Please, sign in"

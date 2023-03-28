@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ "Log in!" | trans({}, "login") }}{% endblock %}
+{% block title %}{{ "login.log_in!" | trans({}, "login") }}{% endblock %}
 
 {% block body %}
     <div class="container h-100 mb-5">
@@ -15,13 +15,13 @@
 
                             {% if app.user %}
                                 <div class="mb-3">
-                                    {{ "You are logged in as %s," | trans({"%s": app.user.username}, "login") }} <a href="{{ path('app_logout') }}">{{ "Logout" | trans({}, "login") }}</a>
+                                    {{ "login.logged_in_as" | trans({"%s": app.user.username}, "login") }} <a href="{{ path('app_logout') }}">{{ "login.logout" | trans({}, "login") }}</a>
                                 </div>
                             {% endif %}
 
-                            <h1 class="h1 mb-3 mt-3 card-title">{{  "Please sign in" | trans({}, "security") }}</h1>
+                            <h1 class="h1 mt-3 card-title">{{  "login.please_sign_in" | trans({}, "login") }}</h1>
 
-                            <label class="form-label" for="inputEmail">{{ "Email" | trans({}, "login") }}</label>
+                            <label class="form-label mt-3" for="inputEmail">{{ "login.email" | trans({}, "login") }}</label>
                             <input
                                     type="email"
                                     value="{{ last_username }}"
@@ -29,17 +29,17 @@
                                     id="inputEmail"
                                     class="form-control"
                                     autocomplete="email"
-                                    placeholder="{{ "Email or user name" | trans({}, "login") }}"
+                                    placeholder="{{ "login.email_or_username" | trans({}, "login") }}"
                                     required autofocus>
 
-                            <label class="form-label" for="inputPassword">{{ "Password" | trans({}, "login") }}</label>
+                            <label class="form-label mt-3" for="inputPassword">{{ "login.password" | trans({}, "login") }}</label>
                             <input
                                     type="password"
                                     name="password"
                                     id="inputPassword"
                                     class="form-control"
                                     autocomplete="current-password"
-                                    placeholder="{{ "Password" | trans({}, "login") }}"
+                                    placeholder="{{ "login.password" | trans({}, "login") }}"
                                     required>
 
                             <input type="hidden" name="_csrf_token"
@@ -59,7 +59,7 @@
 
                             <div class="d-grid">
                                 <button class="btn btn-primary btn-lg btn-cyan mt-3" type="submit">
-                                    {{ "Sign in" | trans({}, "login") }}
+                                    {{ "login.sign_in" | trans({}, "login") }}
                                 </button>
                             </div>
                         </form>

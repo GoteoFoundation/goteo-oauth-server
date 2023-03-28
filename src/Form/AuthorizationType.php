@@ -23,7 +23,7 @@ class AuthorizationType extends AbstractType
     {
         $builder
             ->add('accept_or_refuse', ChoiceType::class, [
-                'label' => $this->translator->trans("Accept or Refuse", domain: "authorization"),
+                'label' => $this->translator->trans("authorization.accept_or_refuse.label", domain: "authorization"),
                 'choices' => $this->acceptOrRefuseChoices(),
                 'attr' => [
                     'class' => 'form-check'
@@ -32,15 +32,15 @@ class AuthorizationType extends AbstractType
                 'required' => true,
             ])
             ->add('submit', SubmitType::class, [
-                'label' => $this->translator->trans("Submit", domain: "authorization")
+                'label' => $this->translator->trans("authorization.submit.label", domain: "authorization")
             ]);
     }
 
     private function acceptOrRefuseChoices(): array
     {
         return [
-            $this->translator->trans('Accept', domain: "authorization") => 'accept',
-            $this->translator->trans('Refuse', domain: "authorization") => 'refuse'
+            $this->translator->trans('authorization.accept.label', domain: "authorization") => 'accept',
+            $this->translator->trans('authorization.refuse.label', domain: "authorization") => 'refuse'
         ];
     }
 }

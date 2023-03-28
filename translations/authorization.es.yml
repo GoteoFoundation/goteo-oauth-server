@@ -1,6 +1,11 @@
-"Please, authorize or refuse": "Por favor, autoriza o rechaza"
-"Accept": "Autorizar"
-"Refuse": "Rechazar"
-"Submit": "Guardar"
-authorization.terms_and_conditions: "Para continuar, Goteo compartirá tu nombre, tu dirección de correo electrónica, tu preferencia de idioma y tu foto de perfil con %client_name%. Antes de utilizar esta aplicación, puedes consultar la <a href='%terms_and_conditions_url%'>terminos y condiciones de uso</a> de la aplicación %client_name%."
-"Accept or Refuse": "Acepta o rechaza"
+authorization:
+  title: "Por favor, autoriza o rechaza"
+  accept:
+    label: "Autorizar"
+  refuse:
+    label: "Rechazar"
+  submit:
+    label: "Guardar"
+  terms_and_conditions: "Para continuar, Goteo compartirá tu nombre, tu dirección de correo electrónica, tu preferencia de idioma y tu foto de perfil con %client_name%. Antes de utilizar esta aplicación, puedes consultar los <a href='%terms_and_conditions_url%'>términos y condiciones de uso</a> de la aplicación %client_name%."
+  accept_or_refuse:
+    label: "Acepta o rechaza"

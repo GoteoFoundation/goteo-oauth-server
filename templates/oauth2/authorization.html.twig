@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ "Log in!" | trans({}, "login")}}{% endblock %}
+{% block title %}{{ "login.log_in" | trans({}, "login")}}{% endblock %}
 
 {% block body %}
     <div class="container h-100 mb-5">
@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-body m-2">
                         {{ form_start(form) }}
-                            <h1 class="h3 mb-3 font-weight-normal">{{ "Please, authorize or refuse" | trans({}, "authorization" ) }}</h1>
+                            <h1 class="h3 mb-3 font-weight-normal">{{ "authorization.title" | trans({}, "authorization" ) }}</h1>
 
                         {% if client %}
                             <p>
@@ -17,7 +17,7 @@
                             </p>
                         {% endif %}
 
-                            {{ form_row(form.accept_or_refuse, {'attr': { 'class': 'form-check'}}) }}
+                            {{ form_row(form.accept_or_refuse, {'attr': { 'class': 'form-check mt-3'}}) }}
 
                             {{ form_widget(form.submit, {'attr': {'class': 'form-control btn-primary btn btn-lg btn-cyan mt-5'}}) }}
                         {{ form_end(form) }}

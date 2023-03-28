@@ -1,5 +1,7 @@
-home.title: "¡Bienvenido al servidor de autenticación de la Plataforma Goteo!"
-home.description: "Este servidor te permite iniciar sesión utilizando la aplicación de la Plataforma Goteo. Para utilizarlo, sólo tienes que enviarnos un correo informándonos de tu aplicación y nos pondremos en contacto contigo para gestionar el uso del Oauth de Goteo"
-home.mail.subject: "Acceso al servidor Oauth de Goteo.org"
-home.mail.body: "Me gustaría poder utilizar el servidor de Oauth de Goteo dentro de mi aplicación"
-home.mail.description: "Obtén acceso al servidor Oauth"
+home:
+  title: "¡Bienvenido al servidor de autenticación de la Plataforma Goteo!"
+  description: "Este servidor te permite iniciar sesión utilizando la aplicación de la Plataforma Goteo. Para utilizarlo, sólo tienes que enviarnos un correo informándonos de tu aplicación y nos pondremos en contacto contigo para gestionar el uso del Oauth de Goteo"
+  mail:
+    subject: "Acceso al servidor Oauth de Goteo.org"
+    body: "Me gustaría poder utilizar el servidor de Oauth de Goteo dentro de mi aplicación"
+    description: "Obtén acceso al servidor Oauth"
