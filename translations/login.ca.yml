@@ -1,7 +1,9 @@
-"Email": Email
-"Email or user name": "Correu electrònic o nom d'usuari"
-"Password": "Contrasenya"
-"Sign in": "Inicia sessió"
-"Log in!": "Iniciar sessió"
-"You are logged in as %s,": "Has iniciat sessió com a %s,"
-"Logout": "Tancar sessió"
+login:
+  email: Email
+  email_or_username: "Correu electrònic o nom d'usuari"
+  password: "Contrasenya"
+  sign_in: "Inicia sessió"
+  log_in: "Iniciar sessió"
+  logged_in_as: "Has iniciat sessió com a %s,"
+  logout: "Tancar sessió"
+  please_sign_in: "Si us plau, inicia sessió"

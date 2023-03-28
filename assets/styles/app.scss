@@ -19,6 +19,14 @@ body {
     background-color: $color-cyan;
   }
 
+  form {
+    #authorization_accept_or_refuse {
+      label {
+        margin: 0 2em 0 1em;
+      }
+    }
+  }
+
   footer {
     background-color: $background-grey;
     flex: 0 0 auto;
