@@ -13,11 +13,19 @@ namespace App\Controller;
 use App\UseCase\GetUserApiTokenUseCase;
 use App\UseCase\GetUserInfoUseCase;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+
+    #[Route('/')]
+    public function indexNoLocale(Request $request): Response
+    {
+        return $this->redirectToRoute('home', ['_locale' => $request->getLocale()]);
+    }
+
     #[Route('/{_locale}', name: 'home')]
     public function index(): Response
     {
