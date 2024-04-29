@@ -19,19 +19,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-
     #[Route('/')]
     public function indexNoLocale(Request $request): Response
     {
         return $this->redirectToRoute('home', ['_locale' => $request->getLocale()]);
-    }
-
-    #[Route('/{_locale}', name: 'home')]
-    public function index(): Response
-    {
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
     }
 
     #[Route('/userInfo', name: 'userInfo')]
@@ -51,5 +42,13 @@ class HomeController extends AbstractController
         $response = $useCase->execute($this->getUser()->getUserIdentifier());
 
         return $this->json($response);
+    }
+
+    #[Route('/{_locale}', name: 'home')]
+    public function index(): Response
+    {
+        return $this->render('home/index.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
     }
 }
