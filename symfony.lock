@@ -1,7 +1,4 @@
 {
-    "defuse/php-encryption": {
-        "version": "v2.3.1"
-    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -91,26 +88,18 @@
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
-    "lcobucci/clock": {
-        "version": "2.1.0"
-    },
-    "lcobucci/jwt": {
-        "version": "4.1.5"
-    },
-    "league/event": {
-        "version": "2.2.0"
-    },
-    "league/oauth2-server": {
-        "version": "8.3.3"
-    },
     "league/oauth2-server-bundle": {
-        "version": "v0.3.0"
-    },
-    "league/uri": {
-        "version": "6.5.0"
-    },
-    "league/uri-interfaces": {
-        "version": "2.3.0"
+        "version": "0.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "0.4",
+            "ref": "7f26963037fce3b69c1b3f6a75a3265edb1e1caa"
+        },
+        "files": [
+            "config/packages/league_oauth2_server.yaml",
+            "config/routes/league_oauth2_server.yaml"
+        ]
     },
     "monolog/monolog": {
         "version": "2.3.5"
@@ -122,19 +111,16 @@
         "version": "v4.13.2"
     },
     "nyholm/psr7": {
-        "version": "1.4",
+        "version": "1.8",
         "recipe": {
             "repo": "github.com/symfony/recipes",
-            "branch": "master",
+            "branch": "main",
             "version": "1.0",
-            "ref": "0cd4d2d0e7f646fda75f9944f747a56e6ed13d4c"
+            "ref": "4a8c0345442dcca1d8a2c65633dcf0285dd5a5a2"
         },
         "files": [
             "config/packages/nyholm_psr7.yaml"
         ]
-    },
-    "paragonie/random_compat": {
-        "version": "v9.99.100"
     },
     "phar-io/manifest": {
         "version": "2.0.3"
@@ -197,12 +183,6 @@
     },
     "psr/event-dispatcher": {
         "version": "1.0.0"
-    },
-    "psr/http-factory": {
-        "version": "1.0.1"
-    },
-    "psr/http-message": {
-        "version": "1.0.1"
     },
     "psr/link": {
         "version": "1.0.0"
@@ -272,9 +252,6 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
-    },
-    "stella-maris/clock": {
-        "version": "0.1.4"
     },
     "symfony/asset": {
         "version": "v5.4.0"
@@ -501,9 +478,6 @@
     },
     "symfony/proxy-manager-bridge": {
         "version": "v5.4.2"
-    },
-    "symfony/psr-http-message-bridge": {
-        "version": "v2.1.2"
     },
     "symfony/routing": {
         "version": "5.4",
