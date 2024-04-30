@@ -25,7 +25,7 @@ return RectorConfig::configure()
         SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
         DoctrineSetList::DOCTRINE_CODE_QUALITY
     ])
-    ->withImportNames()
+    ->withImportNames(removeUnusedImports: true)
     ->withRules([
         AddVoidReturnTypeWhereNoReturnRector::class,
     ]);
