@@ -33,3 +33,7 @@ public.key
 ###> league/oauth2-server-bundle ###
 /config/jwt/*.pem
 ###< league/oauth2-server-bundle ###
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
