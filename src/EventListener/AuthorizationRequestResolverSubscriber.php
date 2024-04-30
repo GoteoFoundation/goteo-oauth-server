@@ -42,7 +42,7 @@ class AuthorizationRequestResolverSubscriber implements EventSubscriberInterface
 
         $response = new Response(
             "",
-            \Symfony\Component\HttpFoundation\Response::HTTP_FOUND,
+            Response::HTTP_FOUND,
             [
                 'Location' => $this->urlGenerator->generate('app_consent', $request->query->all()),
             ]

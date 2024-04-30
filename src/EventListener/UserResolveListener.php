@@ -2,11 +2,12 @@
 
 namespace App\EventListener;
 
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use App\Repository\UserRepository;
 use App\Service\PasswordValidatorService;
 use League\Bundle\OAuth2ServerBundle\Event\UserResolveEvent;
 
-final class UserResolveEventSubscriber implements \Symfony\Component\EventDispatcher\EventSubscriberInterface
+final class UserResolveEventSubscriber implements EventSubscriberInterface
 {
     private UserRepository $userRepository;
     private PasswordValidatorService $passwordValidator;
