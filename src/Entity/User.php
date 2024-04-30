@@ -21,37 +21,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::STRING, length: 50)]
     private string $id;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::STRING, length: 100)]
     private string $name;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::STRING, length: 255)]
     private string $email;
 
 //    #[ORM\Column(type: 'json')]
     private array $roles = [];
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::STRING)]
     private string $password;
 
-    #[ORM\Column(name: 'active', type: 'boolean')]
+    #[ORM\Column(name: 'active', type: \Doctrine\DBAL\Types\Types::BOOLEAN)]
     private bool $isActive;
 
-    #[ORM\Column(name: 'created', type: 'datetime')]
+    #[ORM\Column(name: 'created', type: \Doctrine\DBAL\Types\Types::DATETIME_MUTABLE)]
     private DateTime $createdAt;
 
-    #[ORM\Column(name: 'modified', type: 'datetime')]
+    #[ORM\Column(name: 'modified', type: \Doctrine\DBAL\Types\Types::DATETIME_MUTABLE)]
     private DateTime $modifiedAt;
 
-    #[ORM\Column(name: 'avatar', type: 'string', nullable: true)]
+    #[ORM\Column(name: 'avatar', type: \Doctrine\DBAL\Types\Types::STRING, nullable: true)]
     private ?string $picture;
 
-    #[ORM\Column(name: 'lang', type: 'string')]
+    #[ORM\Column(name: 'lang', type: \Doctrine\DBAL\Types\Types::STRING)]
     private string $locale;
 
-    #[ORM\Column(name: 'confirmed', type: 'boolean')]
+    #[ORM\Column(name: 'confirmed', type: \Doctrine\DBAL\Types\Types::BOOLEAN)]
     private bool $isConfirmed;
 
     public function getId(): ?string

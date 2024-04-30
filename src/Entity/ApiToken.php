@@ -11,13 +11,13 @@ use Doctrine\ORM\Mapping as ORM;
 class ApiToken
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: \Doctrine\DBAL\Types\Types::STRING, length: 50)]
     private string $userId;
 
-    #[ORM\Column(name: 'key', type: 'string', length: 50)]
+    #[ORM\Column(name: 'key', type: \Doctrine\DBAL\Types\Types::STRING, length: 50)]
     private string $apiToken;
 
-    #[ORM\Column(name: 'expiration_date', type: 'datetime', nullable: true)]
+    #[ORM\Column(name: 'expiration_date', type: \Doctrine\DBAL\Types\Types::DATETIME_MUTABLE, nullable: true)]
     private ?DateTimeImmutable $expiresAt;
 
     public function getUserId(): string
