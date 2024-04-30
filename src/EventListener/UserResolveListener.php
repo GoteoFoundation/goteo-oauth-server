@@ -6,7 +6,7 @@ use App\Repository\UserRepository;
 use App\Service\PasswordValidatorService;
 use League\Bundle\OAuth2ServerBundle\Event\UserResolveEvent;
 
-final class UserResolveListener
+final class UserResolveEventSubscriber implements \Symfony\Component\EventDispatcher\EventSubscriberInterface
 {
     private UserRepository $userRepository;
     private PasswordValidatorService $passwordValidator;
@@ -24,5 +24,12 @@ final class UserResolveListener
         if ($user && $this->passwordValidator->isPasswordValid($user->getPassword(), $event->getPassword())) {
             $event->setUser($user);
         }
+    }
+    /**
+     * @return array<string, mixed>
+     */
+    public static function getSubscribedEvents(): array
+    {
+        return ['league.oauth2_server.event.user_resolve' => 'onUserResolve'];
     }
 }
