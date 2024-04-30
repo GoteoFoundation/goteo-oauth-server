@@ -13,6 +13,7 @@ namespace App\Controller;
 use App\UseCase\GetUserApiTokenUseCase;
 use App\UseCase\GetUserInfoUseCase;
 use App\UseCase\GetUserInvestsUseCase;
+use App\UseCase\GetUserInvestedToRewardUseCase;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,6 +50,14 @@ class HomeController extends AbstractController
     public function userInvests(GetUserInvestsUseCase $useCase): Response
     {
         $response = $useCase->execute($this->getUser()->getUserIdentifier());
+
+        return $this->json($response);
+    }
+
+    #[Route('/userInvestedToReward/{reward_id}', name: 'userInvestedToReward')]
+    public function userInvestedToReward(Request $request, int $reward_id, GetUserInvestedToRewardUseCase $useCase): Response
+    {
+        $response = $useCase->execute($reward_id, $this->getUser()->getUserIdentifier());
 
         return $this->json($response);
     }

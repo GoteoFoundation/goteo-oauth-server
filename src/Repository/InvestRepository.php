@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Invest;
+use App\Entity\InvestReward;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Orm\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -35,28 +37,16 @@ class InvestRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    //    /**
-    //     * @return Invest[] Returns an array of Invest objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('i')
-    //            ->andWhere('i.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('i.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Invest
-    //    {
-    //        return $this->createQueryBuilder('i')
-    //            ->andWhere('i.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function hasUserInvestedInReward(User $user, int $reward_id): bool
+    {
+        return (bool) $this->createQueryBuilder('i')
+            ->select('i')
+            ->innerJoin(InvestReward::class, 'ir', 'WITH', 'ir.invest = i.id')
+            ->where('i.userId = :user_id AND ir.reward = :reward_id')
+            ->setParameter(':user_id', $user->getId())
+            ->setParameter(':reward_id', $reward_id)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
