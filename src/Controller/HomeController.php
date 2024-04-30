@@ -12,6 +12,7 @@ namespace App\Controller;
 
 use App\UseCase\GetUserApiTokenUseCase;
 use App\UseCase\GetUserInfoUseCase;
+use App\UseCase\GetUserInvestsUseCase;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,6 +39,14 @@ class HomeController extends AbstractController
 
     #[Route('/userApiToken', name: 'userApiToken')]
     public function userApiToken(GetUserApiTokenUseCase $useCase): Response
+    {
+        $response = $useCase->execute($this->getUser()->getUserIdentifier());
+
+        return $this->json($response);
+    }
+
+    #[Route('/userInvests', name: 'userInvests')]
+    public function userInvests(GetUserInvestsUseCase $useCase): Response
     {
         $response = $useCase->execute($this->getUser()->getUserIdentifier());
 
