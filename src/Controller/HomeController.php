@@ -10,6 +10,7 @@
 
 namespace App\Controller;
 
+use App\UseCase\GetUserActiveInvestedRewardUseCase;
 use App\UseCase\GetUserApiTokenUseCase;
 use App\UseCase\GetUserInfoUseCase;
 use App\UseCase\GetUserInvestsUseCase;
@@ -56,6 +57,14 @@ class HomeController extends AbstractController
 
     #[Route('/userInvestedToReward/{reward_id}', name: 'userInvestedToReward')]
     public function userInvestedToReward(Request $request, int $reward_id, GetUserInvestedToRewardUseCase $useCase): Response
+    {
+        $response = $useCase->execute($reward_id, $this->getUser()->getUserIdentifier());
+
+        return $this->json($response);
+    }
+
+    #[Route('/userActiveInvestedToReward/{reward_id}', name: 'userInvestedToReward')]
+    public function userActiveInvestInReward(int $reward_id, GetUserActiveInvestedRewardUseCase $useCase): Response
     {
         $response = $useCase->execute($reward_id, $this->getUser()->getUserIdentifier());
 

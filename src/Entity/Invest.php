@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\InvestRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: InvestRepository::class)]
@@ -21,6 +22,9 @@ class Invest
 
     #[ORM\Column]
     private ?int $status = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $invested = null;
 
     public function getId(): ?int
     {
@@ -59,6 +63,18 @@ class Invest
     public function setStatus(int $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getInvested(): ?\DateTimeInterface
+    {
+        return $this->invested;
+    }
+
+    public function setInvested(\DateTimeInterface $invested): static
+    {
+        $this->invested = $invested;
 
         return $this;
     }

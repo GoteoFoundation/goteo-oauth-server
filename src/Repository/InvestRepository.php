@@ -42,7 +42,20 @@ class InvestRepository extends ServiceEntityRepository
         return (bool) $this->createQueryBuilder('i')
             ->select('i')
             ->innerJoin(InvestReward::class, 'ir', 'WITH', 'ir.invest = i.id')
-            ->where('i.userId = :user_id AND ir.reward = :reward_id')
+            ->where('i.userId = :user_id AND ir.reward = :reward_id and i.status = 1')
+            ->setParameter(':user_id', $user->getId())
+            ->setParameter(':reward_id', $reward_id)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function hasUserInvestedInRewardLastMonth(User $user, int $reward_id): bool
+    {
+        return (bool) $this->createQueryBuilder('i')
+            ->select('i')
+            ->innerJoin(InvestReward::class, 'ir', 'WITH', 'ir.invest = i.id')
+            ->where('i.status = 1 and i.userId = :user_id AND ir.reward = :reward_id AND i.invested >= DATE_SUB(CURRENT_DATE(), 1, \'MONTH\')')
             ->setParameter(':user_id', $user->getId())
             ->setParameter(':reward_id', $reward_id)
             ->setMaxResults(1)

@@ -8,13 +8,13 @@
  * and LICENSE files that was distributed with this source code.
  */
 
-namespace App\UseCase;
+ namespace App\UseCase;
 
 use App\Repository\InvestRepository;
 use App\Repository\UserRepository;
 
-class GetUserInvestedToRewardUseCase
-{
+ class GetUserActiveInvestedRewardUseCase
+ {
     private UserRepository $userRepository;
     private InvestRepository $investRepository;
 
@@ -32,6 +32,6 @@ class GetUserInvestedToRewardUseCase
     ): bool {
         $user = $this->userRepository->findById($userId);
 
-        return $this->investRepository->hasUserInvestedInReward($user, $rewardId);
+        return $this->investRepository->hasUserInvestedInRewardLastMonth($user, $rewardId);
     }
-}
+ }
