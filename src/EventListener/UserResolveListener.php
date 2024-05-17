@@ -19,7 +19,7 @@ final class UserResolveListener
 
     public function onUserResolve(UserResolveEvent $event): void
     {
-        $user = $this->userRepository->findOneBy(['email' => $event->getUsername()]);
+        $user = $this->userRepository->findOneByIdentifier($event->getUsername());
 
         if ($user && $this->passwordValidator->isPasswordValid($user->getPassword(), $event->getPassword())) {
             $event->setUser($user);

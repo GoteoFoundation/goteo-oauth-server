@@ -65,7 +65,7 @@ Run all these commands under the Docker service. E.g.: `docker exec goteo-oauth_
    - Type: OAuth 2.0
    - Token name: Any name
    - Grant type: Use "Client Credentials"
-   - Access Token URL: "http://127.0.0.1:52000/token"
+   - Access Token URL: "http://127.0.0.1:52000/{locale}/token" (Replace `{locale}` with an actual locale string).
    - Client ID: The one you've just obtained in step 1
    - Client secret: The one you've just obtained in step 1
    - Scope: Use "TEST", or any that's in `config/packages/league_oauth2_server.yaml` at the `league_oauth2_server.scopes.available` entry
@@ -81,7 +81,7 @@ Create a new OAuth2 client:
 
 At step 2, do the following:
 - Grant type: "Password Credentials"
-- Username: the user's email
+- Username: the user's username (id) or email
 - Password : Type the user's password
 
 ## Test OAuth2 "authorization_code" grant (Postman):
