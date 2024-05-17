@@ -10,6 +10,7 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use App\Repository\UserRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,37 +22,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: Types::STRING, length: 50)]
     private string $id;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\Column(type: Types::STRING, length: 100)]
     private string $name;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: Types::STRING, length: 255)]
     private string $email;
 
 //    #[ORM\Column(type: 'json')]
     private array $roles = [];
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     private string $password;
 
-    #[ORM\Column(name: 'active', type: 'boolean')]
+    #[ORM\Column(name: 'active', type: Types::BOOLEAN)]
     private bool $isActive;
 
-    #[ORM\Column(name: 'created', type: 'datetime')]
+    #[ORM\Column(name: 'created', type: Types::DATETIME_MUTABLE)]
     private DateTime $createdAt;
 
-    #[ORM\Column(name: 'modified', type: 'datetime')]
+    #[ORM\Column(name: 'modified', type: Types::DATETIME_MUTABLE)]
     private DateTime $modifiedAt;
 
-    #[ORM\Column(name: 'avatar', type: 'string', nullable: true)]
+    #[ORM\Column(name: 'avatar', type: Types::STRING, nullable: true)]
     private ?string $picture;
 
-    #[ORM\Column(name: 'lang', type: 'string')]
+    #[ORM\Column(name: 'lang', type: Types::STRING)]
     private string $locale;
 
-    #[ORM\Column(name: 'confirmed', type: 'boolean')]
+    #[ORM\Column(name: 'confirmed', type: Types::BOOLEAN)]
     private bool $isConfirmed;
 
     public function getId(): ?string
@@ -144,7 +145,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;

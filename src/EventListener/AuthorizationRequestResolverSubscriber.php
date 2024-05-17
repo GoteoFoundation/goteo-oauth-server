@@ -42,7 +42,7 @@ class AuthorizationRequestResolverSubscriber implements EventSubscriberInterface
 
         $response = new Response(
             "",
-            302,
+            Response::HTTP_FOUND,
             [
                 'Location' => $this->urlGenerator->generate('app_consent', $request->query->all()),
             ]

@@ -14,4 +14,4 @@ npm run-script build
 echo -e "\nApply DB migrations if needed"
 bin/console doctrine:migrations:migrate --em=default --no-interaction
 
-/usr/sbin/php-fpm8.0
+/usr/sbin/php-fpm8.3

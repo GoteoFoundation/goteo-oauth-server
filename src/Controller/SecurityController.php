@@ -34,9 +34,7 @@ class SecurityController extends AbstractController
       $this->clientRepository = $clientRepository;
     }
 
-    /**
-     * @Route("{_locale}/login", name="app_login")
-     */
+    #[Route(path: '{_locale}/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // get the login error if there is one
@@ -47,18 +45,16 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    /**
-     * @Route("/logout", name="app_logout")
-     */
+    #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
         throw new LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
     /**
-     * @Route("{_locale}/consent", name="app_consent")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
+    #[Route(path: '{_locale}/consent', name: 'app_consent')]
     public function consent(Request $request): Response
     {
         $clientId = $request->query->getAlnum('client_id');
