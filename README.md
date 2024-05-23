@@ -92,5 +92,5 @@ Create an OAuth2 client like this:
 At step 2, do the following:
 - Grant type: "Authorization Code"
 - Callback URL: The one in the --redirect-uri parameter from the generated client => `http://127.0.0.1:52000/callback`
-- Auth URL: `http://127.0.0.1:52000/authorize`
+- Auth URL: `http://127.0.0.1:52000/{locale}/authorize`
 - State: Any string
