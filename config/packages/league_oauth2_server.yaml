@@ -3,6 +3,7 @@ league_oauth2_server:
         private_key: '%env(resolve:OAUTH_PRIVATE_KEY)%'
         private_key_passphrase: '%env(resolve:OAUTH_PASSPHRASE)%'
         encryption_key: '%env(resolve:OAUTH_ENCRYPTION_KEY)%'
+        access_token_ttl: '%env(resolve:OAUTH_ACCESS_TOKEN_TTL)%'
     resource_server:
         public_key: '%env(resolve:OAUTH_PUBLIC_KEY)%'
     scopes:
