@@ -56,14 +56,14 @@ class HomeController extends AbstractController
     }
 
     #[Route('/userInvestedToReward/{reward_id}', name: 'userInvestedToReward')]
-    public function userInvestedToReward(Request $request, int $reward_id, GetUserInvestedToRewardUseCase $useCase): Response
+    public function userInvestedToReward(int $reward_id, GetUserInvestedToRewardUseCase $useCase): Response
     {
         $response = $useCase->execute($reward_id, $this->getUser()->getUserIdentifier());
 
         return $this->json($response);
     }
 
-    #[Route('/userActiveInvestedToReward/{reward_id}', name: 'userInvestedToReward')]
+    #[Route('/userActiveInvestedToReward/{reward_id}', name: 'userActiveInvestedToReward')]
     public function userActiveInvestInReward(int $reward_id, GetUserActiveInvestedRewardUseCase $useCase): Response
     {
         $response = $useCase->execute($reward_id, $this->getUser()->getUserIdentifier());
