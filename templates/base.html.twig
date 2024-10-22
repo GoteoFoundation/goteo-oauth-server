@@ -16,8 +16,11 @@
     <body class="d-flex flex-column h-100">
         <nav class="navbar">
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="https://goteo.org"><img width="150" src="{{ asset("images/goteo-white.svg") }}" alt="Goteo"></a>
+                <a class="navbar-brand" href="https://goteo.org"><img width="150" src="{{ asset("images/goteo-white.svg") }}" alt="Goteo"></a>
+                <div class="nav navbar-right">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a class="nav-link text-light" href="{{ path('app_logout') }}"> {{ "login.logout" | trans({}, "login") }}</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>
